@@ -6,7 +6,7 @@ import java.util.Arrays;
 class Solution {
     public int[] solution(int[] arr, int divisor) {
 
-        int[] result = Arrays.stream(arr) // filter divisibles
+        int[] result = Arrays.stream(arr) // filter divisible nums
                 .filter(num -> num % divisor == 0)
                 .toArray();
 

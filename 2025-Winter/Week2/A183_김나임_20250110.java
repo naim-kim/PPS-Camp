@@ -1,5 +1,12 @@
-package Week2;
+//https://www.acmicpc.net/problem/10171
+//Cats
 
-public class A183_김나임_20250110 {
-    
+public class Main {
+    public static void main(String[] args) {
+      
+        System.out.println("\\    /\\");
+        System.out.println(" )  ( ')");
+        System.out.println("(  /  )");
+        System.out.println(" \\(__)|");
+    }
 }

@@ -1,5 +1,16 @@
-package Week2;
+//https://www.acmicpc.net/problem/8393
+//sum
 
-public class A192_김나임_20250112 {
-    
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+
+        int sum = n * (n + 1) / 2;
+
+        System.out.println(sum);
+        s.close();
+    }
 }

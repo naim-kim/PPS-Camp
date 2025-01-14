@@ -1,5 +1,16 @@
-package Week2;
+//https://www.acmicpc.net/problem/2743
+//단어길이재기
 
-public class A203_김나임_20250112 {
-    
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        String input = s.nextLine();
+
+        int counter = input.replaceAll("[^a-zA-Z]", "").length();
+        System.out.println(counter);
+
+        s.close();
+    }
 }

@@ -12,8 +12,8 @@ public class Main {
             initializeGraph(N);
             initializeEdges(s, M);
 
-            int infectedCntr = dfs(1);
-            System.out.println(infectedCntr - 1);
+            int cntr = dfs(1);
+            System.out.println(cntr - 1);
         }
     }
 

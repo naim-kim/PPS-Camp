@@ -1,30 +1,28 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class Main {
-    private static final int MAX = 100;
+    private static final Long[] seq = new Long[101];
+
+    static {
+        seq[0] = 0L;
+        seq[1] = 1L;
+        seq[2] = 1L;
+        seq[3] = 1L;
+    }
 
     public static void main(String[] args) {
         try (Scanner s = new Scanner(System.in)) {
-            int[] padovan = precomputePadovanSequence(MAX);
-
             int T = s.nextInt();
-            for (int i = 0; i < T; i++) {
-                int N = s.nextInt();
-                System.out.println(padovan[N]);
+            while (T-- > 0) {
+                System.out.println(padovan(s.nextInt()));
             }
         }
     }
 
-    private static int[] precomputePadovanSequence(int maxN) {
-        int[] padovan = new int[maxN + 1];
-        padovan[1] = 1;
-        padovan[2] = 1;
-        padovan[3] = 1;
-
-        for (int i = 4; i <= maxN; i++) {
-            padovan[i] = padovan[i - 2] + padovan[i - 3];
+    private static long padovan(int N) {
+        if (seq[N] == null) {
+            seq[N] = padovan(N - 2) + padovan(N - 3);
         }
-
-        return padovan;
+        return seq[N];
     }
 }

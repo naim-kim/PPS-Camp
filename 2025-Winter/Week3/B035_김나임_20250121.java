@@ -11,18 +11,18 @@ public class Main {
                 coins[i] = s.nextInt();
             }
 
-            System.out.println(calculateMinimumCoins(N, K, coins));
+            System.out.println(calculateMin(N, K, coins));
         }
     }
 
-    private static int calculateMinimumCoins(int N, int K, int[] coins) {
-        int coinCntr = 0;
+    private static int calculateMin(int N, int K, int[] coins) {
+        int cntr = 0;
 
         for (int i = N - 1; i >= 0 && K > 0; i--) {
-            coinCntr += K / coins[i];
+            cntr += K / coins[i];
             K %= coins[i];
         }
 
-        return coinCntr;
+        return cntr;
     }
 }

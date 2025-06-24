@@ -1,20 +1,25 @@
-# Set default Java compiler and classpath
 JAVAC = javac
 JAVA = java
-SRC_DIR = .
+
+SRC_DIR = week1
 BIN_DIR = bin
 
-$(BIN_DIR):
-	mkdir -p $(BIN_DIR)
+# All Java sources (without extension)
+EXES = a001 a002
 
-# Compile all Main.java files under week folders
-compile: $(BIN_DIR)
-	find $(SRC_DIR) -name Main.java | xargs $(JAVAC) -d $(BIN_DIR)
+# Default target: compile all
+all: $(EXES)
 
-# Run a specific problem, e.g., make run WEEK=week1 PROB=3
+# Pattern rule to compile each .java file
+$(EXES):
+	$(JAVAC) -d $(BIN_DIR) $(SRC_DIR)/$@.java
+
+# Run a specific class: make run target=a001
 run:
-	$(JAVA) -cp $(BIN_DIR) week$(WEEK).$(PROB).Main
+	$(JAVA) -cp $(BIN_DIR) week1.$(target)
 
-# Clean all compiled class files
+# Clean compiled .class files
 clean:
-	rm -rf $(BIN_DIR)
+	rm -rf $(BIN_DIR)/*
+
+# java -cp bin a001	

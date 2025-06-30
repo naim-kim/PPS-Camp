@@ -5,7 +5,7 @@ SRC_DIR = week1
 BIN_DIR = bin
 
 # All Java sources (without extension)
-EXES = a001 a002
+EXES = a001 a002 a003 a004 a005
 
 # Default target: compile all
 all: $(EXES)

@@ -3,29 +3,19 @@
 public class a005 {
     public static void main(String[] args) {
         String skill = "CBD";
-        String[] skillTrees = { "BACDE", "CBADF", "AECB", "BDA" };
-        System.out.println("Valid skill tree count: " + countValid(skill, skillTrees)); // Output: 2
-    }
-
-    public static int countValid(String skill, String[] skillTrees) {
+        String[] trees = { "BACDE", "CBADF", "AECB", "BDA" };
         int count = 0;
 
-        for (String tree : skillTrees) {
-            StringBuilder filtered = new StringBuilder();
+        for (String tree : trees) {
+            String filtered = tree.chars()
+                    .mapToObj(c -> String.valueOf((char) c))
+                    .filter(c -> skill.contains(c))
+                    .reduce("", String::concat);
 
-            // Keep only characters that are part of the required skill sequence
-            for (char c : tree.toCharArray()) {
-                if (skill.indexOf(c) != -1) {
-                    filtered.append(c);
-                }
-            }
-
-            // Check if the filtered string is a valid prefix of the skill order
-            if (skill.startsWith(filtered.toString())) {
+            if (skill.startsWith(filtered))
                 count++;
-            }
         }
 
-        return count;
+        System.out.println("Valid skill tree count: " + count);
     }
 }

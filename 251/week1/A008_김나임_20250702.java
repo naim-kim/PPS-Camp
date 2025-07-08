@@ -24,13 +24,13 @@ public class a008 {
             }
 
             double avg = sum / (double) N;
-            int counter = 0; // count above avg
+            int count = 0; // count above avg
             for (int score : scores) {
                 if (score > avg)
-                    counter++;
+                    count++;
             }
 
-            double percent = (counter * 100.0) / N;
+            double percent = (count * 100.0) / N;
             System.out.printf("%.3f%%\n", percent);
         }
         sc.close();

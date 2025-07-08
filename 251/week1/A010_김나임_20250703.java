@@ -24,20 +24,20 @@ public class a010 {
         for (int unit = 1; unit <= s.length() / 2; unit++) {
             StringBuilder compressed = new StringBuilder();
             String prev = s.substring(0, unit);
-            int counter = 1;
+            int count = 1;
 
             for (int i = unit; i <= s.length(); i += unit) {
                 int end = Math.min(i + unit, s.length());
                 String current = i + unit <= s.length() ? s.substring(i, end) : "";
 
                 if (prev.equals(current)) {
-                    counter++;
+                    count++;
                 } else {
-                    if (counter > 1)
-                        compressed.append(counter);
+                    if (count > 1)
+                        compressed.append(count);
                     compressed.append(prev);
                     prev = current;
-                    counter = 1;
+                    count = 1;
                 }
             }
 

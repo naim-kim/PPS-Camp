@@ -2,7 +2,7 @@
 public class a024 {
 
     public static void main(String[] args) {
-        new Main().run();
+        new a024().run();
     }
 
     public void run() {

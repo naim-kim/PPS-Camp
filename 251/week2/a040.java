@@ -1,36 +1,29 @@
-// https://leetcode.com/problems/lemonade-change/description/
-public class a024 {
 
+// https://leetcode.com/problems/determine-if-string-halves-are-alike/description/
+import java.util.Scanner;
+
+public class a040 {
     public static void main(String[] args) {
-        new a024().run();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter even-length string: ");
+        String s = sc.nextLine();
+        sc.close();
+
+        System.out.println("Halves are alike? " + halvesAlike(s));
     }
 
-    public void run() {
-        int[] bills = { 5, 5, 5, 10, 20 };
-        System.out.println(lemonadeChange(bills)); // Output: true
-    }
-
-    public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                five++;
-            } else if (bill == 10) {
-                if (five == 0)
-                    return false;
-                five--;
-                ten++;
-            } else { // bill == 20
-                if (ten > 0 && five > 0) {
-                    ten--;
-                    five--;
-                } else if (five >= 3) {
-                    five -= 3;
-                } else {
-                    return false;
-                }
-            }
+    private static boolean halvesAlike(String s) {
+        int n = s.length(), cnt = 0;
+        for (int i = 0; i < n / 2; i++) {
+            if (isVowel(s.charAt(i)))
+                cnt++;
+            if (isVowel(s.charAt(i + n / 2)))
+                cnt--;
         }
-        return true;
+        return cnt == 0;
+    }
+
+    private static boolean isVowel(char c) {
+        return "aeiouAEIOU".indexOf(c) >= 0;
     }
 }

@@ -1,36 +1,23 @@
-// https://leetcode.com/problems/lemonade-change/description/
-public class a024 {
 
+// https://www.acmicpc.net/problem/2953
+import java.util.Scanner;
+
+public class a033 {
     public static void main(String[] args) {
-        new a024().run();
-    }
+        Scanner sc = new Scanner(System.in);
+        int bestIdx = 0, bestSum = 0;
 
-    public void run() {
-        int[] bills = { 5, 5, 5, 10, 20 };
-        System.out.println(lemonadeChange(bills)); // Output: true
-    }
-
-    public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                five++;
-            } else if (bill == 10) {
-                if (five == 0)
-                    return false;
-                five--;
-                ten++;
-            } else { // bill == 20
-                if (ten > 0 && five > 0) {
-                    ten--;
-                    five--;
-                } else if (five >= 3) {
-                    five -= 3;
-                } else {
-                    return false;
-                }
+        for (int i = 1; i <= 5; i++) {
+            int sum = 0;
+            for (int j = 0; j < 4; j++)
+                sum += sc.nextInt();
+            if (sum > bestSum) {
+                bestSum = sum;
+                bestIdx = i;
             }
         }
-        return true;
+
+        sc.close();
+        System.out.println(bestIdx + " " + bestSum);
     }
 }

@@ -1,36 +1,23 @@
-// https://leetcode.com/problems/lemonade-change/description/
-public class a024 {
 
+// https://www.acmicpc.net/problem/17210
+import java.util.Scanner;
+
+public class a029 {
     public static void main(String[] args) {
-        new a024().run();
-    }
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int first = sc.nextInt();
+        sc.close();
 
-    public void run() {
-        int[] bills = { 5, 5, 5, 10, 20 };
-        System.out.println(lemonadeChange(bills)); // Output: true
-    }
-
-    public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                five++;
-            } else if (bill == 10) {
-                if (five == 0)
-                    return false;
-                five--;
-                ten++;
-            } else { // bill == 20
-                if (ten > 0 && five > 0) {
-                    ten--;
-                    five--;
-                } else if (five >= 3) {
-                    five -= 3;
-                } else {
-                    return false;
-                }
-            }
+        if (N > 5) {
+            System.out.println("Love is open door");
+            return;
         }
-        return true;
+
+        int state = first;
+        for (int i = 1; i < N; i++) {
+            state ^= 1;
+            System.out.println(state);
+        }
     }
 }

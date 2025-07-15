@@ -1,36 +1,34 @@
-// https://leetcode.com/problems/lemonade-change/description/
-public class a024 {
 
+//https://www.acmicpc.net/problem/2775
+import java.util.Scanner;
+
+public class a032 {
     public static void main(String[] args) {
-        new a024().run();
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+
+        for (int t = 0; t < T; t++) {
+            int k = sc.nextInt(), n = sc.nextInt();
+            System.out.println(getPeople(k, n));
+        }
+
+        sc.close();
     }
 
-    public void run() {
-        int[] bills = { 5, 5, 5, 10, 20 };
-        System.out.println(lemonadeChange(bills)); // Output: true
-    }
-
-    public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                five++;
-            } else if (bill == 10) {
-                if (five == 0)
-                    return false;
-                five--;
-                ten++;
-            } else { // bill == 20
-                if (ten > 0 && five > 0) {
-                    ten--;
-                    five--;
-                } else if (five >= 3) {
-                    five -= 3;
-                } else {
-                    return false;
+    private static int getPeople(int k, int n) {
+        int[][] p = new int[k + 1][n + 1];
+        for (int room = 1; room <= n; room++) {
+            p[0][room] = room;
+        }
+        for (int floor = 1; floor <= k; floor++) {
+            for (int room = 1; room <= n; room++) {
+                int sum = 0;
+                for (int j = 1; j <= room; j++) {
+                    sum += p[floor - 1][j];
                 }
+                p[floor][room] = sum;
             }
         }
-        return true;
+        return p[k][n];
     }
 }

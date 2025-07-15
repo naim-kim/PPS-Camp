@@ -1,36 +1,28 @@
-// https://leetcode.com/problems/lemonade-change/description/
-public class a024 {
 
+// https://leetcode.com/problems/sqrtx/
+import java.util.Scanner;
+
+public class a038 {
     public static void main(String[] args) {
-        new a024().run();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter x: ");
+        int x = sc.nextInt();
+        sc.close();
+        System.out.println("floor(sqrt(x)) = " + floorSqrt(x));
     }
 
-    public void run() {
-        int[] bills = { 5, 5, 5, 10, 20 };
-        System.out.println(lemonadeChange(bills)); // Output: true
-    }
-
-    public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                five++;
-            } else if (bill == 10) {
-                if (five == 0)
-                    return false;
-                five--;
-                ten++;
-            } else { // bill == 20
-                if (ten > 0 && five > 0) {
-                    ten--;
-                    five--;
-                } else if (five >= 3) {
-                    five -= 3;
-                } else {
-                    return false;
-                }
+    private static int floorSqrt(int x) {
+        int left = 0, right = x, ans = 0;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            long sq = 1L * mid * mid;
+            if (sq <= x) {
+                ans = mid;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
             }
         }
-        return true;
+        return ans;
     }
 }

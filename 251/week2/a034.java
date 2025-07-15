@@ -1,36 +1,19 @@
-// https://leetcode.com/problems/lemonade-change/description/
-public class a024 {
+// https://www.acmicpc.net/problem/3052
 
+import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
+
+public class a034 {
     public static void main(String[] args) {
-        new a024().run();
-    }
+        Scanner sc = new Scanner(System.in);
+        Set<Integer> mods = new HashSet<>();
 
-    public void run() {
-        int[] bills = { 5, 5, 5, 10, 20 };
-        System.out.println(lemonadeChange(bills)); // Output: true
-    }
-
-    public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                five++;
-            } else if (bill == 10) {
-                if (five == 0)
-                    return false;
-                five--;
-                ten++;
-            } else { // bill == 20
-                if (ten > 0 && five > 0) {
-                    ten--;
-                    five--;
-                } else if (five >= 3) {
-                    five -= 3;
-                } else {
-                    return false;
-                }
-            }
+        for (int i = 0; i < 10; i++) {
+            mods.add(sc.nextInt() % 42);
         }
-        return true;
+
+        sc.close();
+        System.out.println(mods.size());
     }
 }

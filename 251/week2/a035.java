@@ -4,23 +4,30 @@ import java.util.Scanner;
 
 public class a035 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int T = sc.nextInt();
+        Scanner s = new Scanner(System.in);
+        int n = Integer.parseInt(s.nextLine()); // read full line
 
-        for (int tc = 0; tc < T; tc++) {
-            double val = sc.nextDouble();
-            sc.nextLine(); // move to operators
-            String[] ops = sc.nextLine().split(" ");
-            for (String op : ops) {
-                switch (op) {
-                    case "@" -> val *= 3;
-                    case "%" -> val += 5;
-                    case "#" -> val -= 7;
+        for (int i = 0; i < n; i++) {
+            String[] tokens = s.nextLine().split(" ");
+            float num = Float.parseFloat(tokens[0]);
+
+            for (int j = 1; j < tokens.length; j++) {
+                switch (tokens[j]) {
+                    case "@":
+                        num *= 3;
+                        break;
+                    case "%":
+                        num += 5;
+                        break;
+                    case "#":
+                        num -= 7;
+                        break;
                 }
             }
-            System.out.printf("%.2f%n", val);
+
+            System.out.printf("%.2f%n", num);
         }
 
-        sc.close();
+        s.close();
     }
 }

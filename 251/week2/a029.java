@@ -1,36 +1,32 @@
-// https://leetcode.com/problems/lemonade-change/description/
-public class a024 {
 
+// https://www.acmicpc.net/problem/17210
+import java.util.Scanner;
+
+public class a029 {
     public static void main(String[] args) {
-        new a024().run();
-    }
+        Scanner sc = new Scanner(System.in);
 
-    public void run() {
-        int[] bills = { 5, 5, 5, 10, 20 };
-        System.out.println(lemonadeChange(bills)); // Output: true
-    }
+        // 입력값이 충분히 들어오는지 확인 필요
+        if (!sc.hasNextInt())
+            return;
+        int N = sc.nextInt();
 
-    public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                five++;
-            } else if (bill == 10) {
-                if (five == 0)
-                    return false;
-                five--;
-                ten++;
-            } else { // bill == 20
-                if (ten > 0 && five > 0) {
-                    ten--;
-                    five--;
-                } else if (five >= 3) {
-                    five -= 3;
-                } else {
-                    return false;
-                }
-            }
+        if (!sc.hasNextInt())
+            return;
+        int first = sc.nextInt();
+
+        sc.close();
+
+        // 규칙 상 6번째 문부터는 불가능
+        if (N >= 6) {
+            System.out.println("Love is open door");
+            return;
         }
-        return true;
+
+        int state = first;
+        for (int i = 1; i < N; i++) {
+            state ^= 1; // toggle
+            System.out.println(state);
+        }
     }
 }

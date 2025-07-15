@@ -1,36 +1,33 @@
-// https://leetcode.com/problems/lemonade-change/description/
-public class a024 {
 
+// https://www.acmicpc.net/problem/17211
+import java.util.Scanner;
+
+public class a030 {
     public static void main(String[] args) {
-        new a024().run();
-    }
+        Scanner sc = new Scanner(System.in);
 
-    public void run() {
-        int[] bills = { 5, 5, 5, 10, 20 };
-        System.out.println(lemonadeChange(bills)); // Output: true
-    }
+        int N = sc.nextInt();
+        int now = sc.nextInt();
 
-    public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                five++;
-            } else if (bill == 10) {
-                if (five == 0)
-                    return false;
-                five--;
-                ten++;
-            } else { // bill == 20
-                if (ten > 0 && five > 0) {
-                    ten--;
-                    five--;
-                } else if (five >= 3) {
-                    five -= 3;
-                } else {
-                    return false;
-                }
-            }
+        double[][] dp = new double[N + 1][2];
+        dp[0][now] = 1.0;
+
+        double[][] p = new double[2][2];
+        p[0][0] = sc.nextDouble();
+        p[0][1] = sc.nextDouble();
+        p[1][0] = sc.nextDouble();
+        p[1][1] = sc.nextDouble();
+
+        sc.close();
+
+        for (int i = 1; i <= N; i++) {
+            dp[i][0] = dp[i - 1][0] * p[0][0] + dp[i - 1][1] * p[1][0];
+            dp[i][1] = dp[i - 1][0] * p[0][1] + dp[i - 1][1] * p[1][1];
         }
-        return true;
+
+        int happy = (int) Math.round(dp[N][0] * 1000);
+        int sad = (int) Math.round(dp[N][1] * 1000);
+        System.out.println(happy);
+        System.out.println(sad);
     }
 }

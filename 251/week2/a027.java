@@ -1,36 +1,38 @@
-// https://leetcode.com/problems/lemonade-change/description/
-public class a024 {
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/42883
+import java.util.Scanner;
+import java.util.Stack;
+
+public class a027 {
     public static void main(String[] args) {
-        new a024().run();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number string: ");
+        String number = sc.next();
+        System.out.print("Enter k: ");
+        int k = sc.nextInt();
+        System.out.println("Largest number: " + getLargestNumber(number, k));
+        sc.close();
     }
 
-    public void run() {
-        int[] bills = { 5, 5, 5, 10, 20 };
-        System.out.println(lemonadeChange(bills)); // Output: true
-    }
+    public static String getLargestNumber(String number, int k) {
+        Stack<Character> stack = new Stack<>();
 
-    public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                five++;
-            } else if (bill == 10) {
-                if (five == 0)
-                    return false;
-                five--;
-                ten++;
-            } else { // bill == 20
-                if (ten > 0 && five > 0) {
-                    ten--;
-                    five--;
-                } else if (five >= 3) {
-                    five -= 3;
-                } else {
-                    return false;
-                }
+        for (char digit : number.toCharArray()) {
+            while (!stack.isEmpty() && k > 0 && stack.peek() < digit) {
+                stack.pop();
+                k--;
             }
+            stack.push(digit);
         }
-        return true;
+
+        // If k remains
+        while (k-- > 0)
+            stack.pop();
+
+        StringBuilder sb = new StringBuilder();
+        for (char c : stack)
+            sb.append(c);
+
+        return sb.toString();
     }
 }

@@ -1,36 +1,26 @@
-// https://leetcode.com/problems/lemonade-change/description/
-public class a024 {
+// https://www.codeground.org/practice/practiceProblemViewNew
 
+import java.util.Scanner;
+
+public class a036 {
     public static void main(String[] args) {
-        new a024().run();
-    }
+        Scanner sc = new Scanner(System.in);
+        int TC = sc.nextInt();
 
-    public void run() {
-        int[] bills = { 5, 5, 5, 10, 20 };
-        System.out.println(lemonadeChange(bills)); // Output: true
-    }
+        for (int tc = 1; tc <= TC; tc++) {
+            int N = sc.nextInt();
+            long xor = 0;
 
-    public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                five++;
-            } else if (bill == 10) {
-                if (five == 0)
-                    return false;
-                five--;
-                ten++;
-            } else { // bill == 20
-                if (ten > 0 && five > 0) {
-                    ten--;
-                    five--;
-                } else if (five >= 3) {
-                    five -= 3;
-                } else {
-                    return false;
-                }
+            for (int i = 0; i < N; i++) {
+                long x = sc.nextLong();
+                if ((x & 1) == 1)
+                    xor ^= x;
             }
+
+            System.out.println("Case #" + tc);
+            System.out.println(xor);
         }
-        return true;
+
+        sc.close();
     }
 }

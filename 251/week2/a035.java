@@ -1,36 +1,33 @@
-// https://leetcode.com/problems/lemonade-change/description/
-public class a024 {
+// https://www.acmicpc.net/problem/5355
 
+import java.util.Scanner;
+
+public class a035 {
     public static void main(String[] args) {
-        new a024().run();
-    }
+        Scanner s = new Scanner(System.in);
+        int n = Integer.parseInt(s.nextLine()); // read full line
 
-    public void run() {
-        int[] bills = { 5, 5, 5, 10, 20 };
-        System.out.println(lemonadeChange(bills)); // Output: true
-    }
+        for (int i = 0; i < n; i++) {
+            String[] tokens = s.nextLine().split(" ");
+            float num = Float.parseFloat(tokens[0]);
 
-    public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
-                five++;
-            } else if (bill == 10) {
-                if (five == 0)
-                    return false;
-                five--;
-                ten++;
-            } else { // bill == 20
-                if (ten > 0 && five > 0) {
-                    ten--;
-                    five--;
-                } else if (five >= 3) {
-                    five -= 3;
-                } else {
-                    return false;
+            for (int j = 1; j < tokens.length; j++) {
+                switch (tokens[j]) {
+                    case "@":
+                        num *= 3;
+                        break;
+                    case "%":
+                        num += 5;
+                        break;
+                    case "#":
+                        num -= 7;
+                        break;
                 }
             }
+
+            System.out.printf("%.2f%n", num);
         }
-        return true;
+
+        s.close();
     }
 }
